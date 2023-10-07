@@ -2,9 +2,11 @@ import http from 'http';
 import mongoose from 'mongoose';
 import config from './config/config';
 import Logging from './library/Logging';
+import {router as v1} from './routes/v1';
 import HttpError from './utils/httpError';
 import express, {Request, Response} from 'express';
 import {createRole} from './controllers/role.controller';
+
 
 const router = express();
 
@@ -54,6 +56,7 @@ const StartServer =async () => {
         next();
     });
     //API ROUTES WITH VERSION
+    router.use('/api', v1);
 
     //API MAIN ROUTER "/"
     router.get('/', (req: Request, res: Response) => {

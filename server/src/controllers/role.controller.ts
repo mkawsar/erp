@@ -25,4 +25,38 @@ export function createRole() {
             });
         }
     });
-}
+};
+
+//GET ROLES LIST
+const getAllRole = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        let pageOptions: { page: number; limit: number } = {
+            page: Number(req.query.page) || 1,
+            limit: Number(req.query.limit) || 10,
+        };
+        const count = await Role.countDocuments({});
+        //GETING DATA FROM TABLE
+        const roles = await Role.find()
+            .limit(pageOptions.limit * 1)
+            .skip((pageOptions.page - 1) * pageOptions.limit)
+            .sort({ createdAt: -1 });
+        //CREATE RESPONSE
+        const result = {
+            roles,
+        };
+        //CREATE PAGINATION
+        const meta = {
+            total: count,
+            limit: pageOptions.limit,
+            totalPages: Math.ceil(count / pageOptions.limit),
+            currentPage: pageOptions.page,
+        };
+        //SEND RESPONSE
+        return jsonAll(res, 200, result, meta);
+    } catch (error) {
+        next(error);
+    }
+};
+
+//EXPORT
+export default {getAllRole};
