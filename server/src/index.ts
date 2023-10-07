@@ -4,16 +4,19 @@ import config from './config/config';
 import Logging from './library/Logging';
 import HttpError from './utils/httpError';
 import express, {Request, Response} from 'express';
+import {createRole} from './controllers/role.controller';
 
 const router = express();
 
 //CONNECTION TO MONGOOSE DATABASE
+mongoose.set('strictQuery', false);
 mongoose
     .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
     .then(() => {
         Logging.info(`Running on ENV = ${process.env.NODE_ENV}`);
         Logging.info('Connected to mongoDB.');
         StartServer();
+        createRole();
     })
     .catch((error) => {
         Logging.error('Unable to connect.');
