@@ -1,4 +1,4 @@
-import { IRole } from './roleInterface';
+import { IRole } from './role.interface';
 
 export interface IUser {
     firstName: string;
