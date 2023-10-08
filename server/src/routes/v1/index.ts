@@ -1,4 +1,5 @@
 import { router as Role } from './role.route';
+import { router as UserRouter } from './user.route';
 import { NextFunction, Request, Response, Router } from 'express';
 
 const _router: Router = Router({
@@ -19,5 +20,6 @@ _router.route('/v1/health/check').get(function (req: Request, res: Response) {
 
 //EXPORT ROUTES WITH BASEPATH
 _router.use('/v1/role', Role);
+_router.use('/v1/user', UserRouter);
 
 export const router = _router;

@@ -1,2 +1,4 @@
 import roleController from './role.controller';
-export {roleController};
+import userController from './user.controller';
+
+export {roleController, userController};
