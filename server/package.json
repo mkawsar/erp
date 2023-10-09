@@ -10,6 +10,7 @@
         "serve": "node dist/index.js"
     },
     "dependencies": {
+        "@types/nodemailer": "^6.4.11",
         "bcrypt": "^5.1.1",
         "chalk": "^4.1.2",
         "dotenv": "^16.3.1",
@@ -30,7 +31,6 @@
         "@types/jsonwebtoken": "^9.0.3",
         "@types/lodash": "^4.14.199",
         "@types/node": "^20.8.3",
-        "@types/nodemailer": "^6.4.11",
         "nodemon": "^3.0.1"
     }
 }
