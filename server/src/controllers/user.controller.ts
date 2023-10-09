@@ -7,7 +7,9 @@ import HttpError from '../utils/httpError';
 import User, {IUserModel} from '../models/user';
 import {jsonOne, jsonAll} from '../utils/general';
 import { RoleType, OtpType } from '../utils/enums';
+import MailService from '../services/mail.service';
 import { NextFunction, Request, Response } from 'express';
+import verifyEmailTemplate from '../templates/verify.template';
 
 //CREATE USER & SEND MAIL FOR VERIFICATION
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
@@ -49,7 +51,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 
         let savedUser = await user.save();
 
-        //GENERATE OTP FOR MAIL VERIFICATION
+        // GENERATE OTP FOR MAIL VERIFICATION
         let tokenExpiration: any = new Date();
         tokenExpiration = tokenExpiration.setMinutes(tokenExpiration.getMinutes() + 10);
         const otp: string = generateOtp(6);
@@ -62,9 +64,18 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
         });
         await newOTP.save();
 
-        res.status(200).json({
-            title: otp
+        //SEND VERIFICATION MAIL TO USER
+        const emailTemplate = verifyEmailTemplate(otp);
+        const mailService = MailService.getInstance();
+        await mailService.mailSend(req.headers['X-Request-Id'], {
+            from: 'kawsar.diu888@gmail.com',
+            to: user.email,
+            subject: 'Verify OTP',
+            html: emailTemplate.html,
         });
+
+        //SENDING RESPONSE
+        return jsonOne<IUserModel>(res, 201, savedUser);
     } catch (error) {
         next(error);
     }

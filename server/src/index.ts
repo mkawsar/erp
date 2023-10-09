@@ -4,6 +4,7 @@ import config from './config/config';
 import Logging from './library/Logging';
 import {router as v1} from './routes/v1';
 import HttpError from './utils/httpError';
+import MailService from './services/mail.service';
 import express, {Request, Response} from 'express';
 import {createRole} from './controllers/role.controller';
 
@@ -27,6 +28,17 @@ mongoose
 
 //ONLY START THE SERVER IF MONGOOSE IS CONNECTS
 const StartServer =async () => {
+    //MAIL SMTP CONNECTION
+    Logging.info('Connecting with SMTP Server...');
+    const mailService = MailService.getInstance();
+    if (process.env.NODE_ENV === 'local') {
+        await mailService.createLocalConnection();
+    } else if (process.env.NODE_ENV === 'production') {
+        await mailService.createConnection();
+    }
+    Logging.info('SMTP Server Connected');
+    Logging.info('SMTP Connection verified');
+
     router.use((req, res, next) => {
         Logging.info(`Incomming -> Method: [${req.method}] - Url: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
         res.on('finish', () => {

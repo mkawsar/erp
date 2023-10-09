@@ -2,11 +2,24 @@
     "compilerOptions": {
         "target": "es6",
         "module": "commonjs",
+        "lib": [
+          "es2016",
+          "dom"
+        ],
+        "allowJs": true,
+        "checkJs": true,
+        "declaration": true,
+        "sourceMap": true,
         "outDir": "./dist",
-        "strict": true,
+        "rootDir": "./src",
+        "removeComments": true,
+        "moduleResolution": "node",
         "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "pretty": true,
+        "experimentalDecorators": true,
+        "typeRoots": [
+          "node_modules/@types"
+        ]
     },
     "include": [
         "src/**/*.ts"
