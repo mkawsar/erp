@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { userController } from '../../controllers';
 import { password } from '../../validators/user.validator';
 import validate from '../../middlewares/validation.middleware';
+import { requiredTextField } from '../../validators/common.validator';
 import { emailAddressValidation } from '../../validators/auth.validator';
 
 //ROLE ROUTES//
@@ -20,6 +21,17 @@ _router
             password('confirm_password')
         ]),
         userController.createUser
+    );
+
+//USER VERFIY THERE EMAIL
+_router
+    .route('/account/verify')
+    .post(
+        validate([
+            emailAddressValidation(), 
+            requiredTextField('otp', 'Otp', { min: 2, max: 255 })
+        ]),
+        userController.accountVerify
     );
 
 //EXPORT

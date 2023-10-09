@@ -1,8 +1,8 @@
 import { hash } from 'bcrypt';
-import OPT from '../models/opt';
+import OTP from '../models/opt';
 import Role from '../models/role';
 import {IUser} from '../interfaces';
-import { generateOtp } from '../utils';
+import { generateOtp, verifyOtp } from '../utils';
 import HttpError from '../utils/httpError';
 import User, {IUserModel} from '../models/user';
 import {jsonOne, jsonAll} from '../utils/general';
@@ -56,7 +56,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
         tokenExpiration = tokenExpiration.setMinutes(tokenExpiration.getMinutes() + 10);
         const otp: string = generateOtp(6);
 
-        let newOTP = new OPT({
+        let newOTP = new OTP({
             userId: savedUser._id,
             type: OtpType.VERIFICATION,
             otp,
@@ -81,4 +81,46 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export default {createUser};
+const accountVerify = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {email, otp} = req.body;
+
+        //FINDIND USER
+        let user = await User.findOne({ email });
+
+        //IF USER NOT FOUND
+        if (!user) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'You have entered an invalid email address.',
+                code: 400,
+            });
+        } else if (user.isEmailVerified) {
+            return jsonOne<string>(res, 200, 'User email is already verified.');
+        }
+
+        //VERIFYING OTP
+        let isOtpValid = await verifyOtp(user._id, otp, OtpType.VERIFICATION);
+
+        if (!isOtpValid) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'This otp has invalid.',
+                code: 400,
+            });
+        }
+        user.isEmailVerified = true;
+        user.save();
+
+        //DELETE OTP
+        await OTP.findByIdAndDelete(isOtpValid);
+
+        //SENDING RESPONSE
+        return jsonOne<string>(res, 200, 'Email verification successfull.');
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+export default {createUser, accountVerify};

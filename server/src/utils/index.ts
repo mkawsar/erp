@@ -13,6 +13,17 @@ const generateOtp = function (len: number): string {
     return OTP;
 };
 
+const verifyOtp = async function(userId: any, otp: string, type: string): Promise<any> {
+    let existOtp = await OTP.findOne({userId, otp, type});
+    
+    const currentDate = new Date();
+    if (!existOtp || existOtp.otpExpiration > currentDate) {
+        return null;
+    }
+
+    return existOtp._id;
+}
+
 export {
-    generateOtp,
+    generateOtp, verifyOtp
 }
