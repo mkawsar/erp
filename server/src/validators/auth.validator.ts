@@ -29,6 +29,7 @@ const loginPasswordValidation = () => {
         .escape()
         .exists()
         .notEmpty()
+        .withMessage('Password address is required')
         .isString()
         .isLength({
             max: 255,

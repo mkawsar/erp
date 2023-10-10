@@ -22,8 +22,23 @@ const verifyOtp = async function(userId: any, otp: string, type: string): Promis
     }
 
     return existOtp._id;
-}
+};
+
+// USED TO GENERATE JWT WITH PAYLOAD AND OPTIONS AS PARAMETERS.
+// THE PAYLOAD CONTAINS THE DATA WHICH WILL BE SET AS JWT PAYLOAD.
+// OPTIONS CONTAIN JWT OPTIONS
+const generateJWT = function (payload: object = {}, options: object = {}): string {
+    const privateKey: any = process.env.JWT_SECRETS;
+    const defaultOptions: object = {
+        expiresIn: '23h',
+    }; 
+    return jwt.sign(
+        payload,
+        privateKey,
+        Object.assign(defaultOptions, options)
+    );
+};
 
 export {
-    generateOtp, verifyOtp
+    generateJWT, generateOtp, verifyOtp
 }
