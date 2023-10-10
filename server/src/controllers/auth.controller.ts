@@ -2,7 +2,7 @@ import { compare, hash } from 'bcrypt';
 import { generateJWT } from '../utils';
 import HttpError from '../utils/httpError';
 import { jsonOne } from '../utils/general';
-import { AuthInterface } from '../interfaces';
+import { AuthInterface, IUser } from '../interfaces';
 import { matchedData } from 'express-validator';
 import User, { IUserModel } from '../models/user';
 import { NextFunction, Request, Response } from 'express';
@@ -65,6 +65,12 @@ const login = async (req: Request, res: Response, next: NextFunction): Promise<A
     } catch (error) {
         next(error);
     }
+};
+
+const user = async (req: Request, res: Response, next: NextFunction) => {
+    const userID = req['tokenPayload'].id;
+    let user = await User.findById(userID).populate('role');
+    return jsonOne<IUser>(res, 200, user);
 }
 
-export default {login};
+export default {login, user};

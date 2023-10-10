@@ -39,6 +39,28 @@ const generateJWT = function (payload: object = {}, options: object = {}): strin
     );
 };
 
+//VALIDATE ACCESS/REFRESH TOKEN
+const validateToken = function (token: string): Object {
+    try {
+        const publicKey: any = process.env.JWT_SECRETS;
+        return jwt.verify(token, publicKey);
+    } catch (e) {
+        throw new HttpError({
+            title: 'invalid_token',
+            detail: 'Invalid token',
+            code: 400,
+        });
+    }
+}
+
+//USED TO GENERATE JWT WITH PAYLOAD AND OPTIONS AS PARAMETERS.
+const extractToken = function (token: string): string | null {
+    if (token?.startsWith('Bearer ')) {
+        return token.slice(7, token.length);
+    }
+    return null;
+};
+
 export {
-    generateJWT, generateOtp, verifyOtp
+    extractToken, generateJWT, generateOtp, validateToken, verifyOtp
 }

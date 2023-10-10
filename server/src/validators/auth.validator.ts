@@ -1,3 +1,4 @@
+import { extractToken } from '../utils';
 import { body, header } from 'express-validator';
 
 //EMAIL VALIDATOR FUNCTION
@@ -37,8 +38,29 @@ const loginPasswordValidation = () => {
         .withMessage('Password is not valid');
 };
 
+// AUTHORIZATION HEADER VALIDATOR FUNCTION
+const authorization = () => {
+    return header('authorization')
+        .trim()
+        .escape()
+        .exists()
+        .notEmpty()
+        .withMessage('Missing authentication header')
+        .bail()
+        .customSanitizer((token, { location }) => {
+            if (location === 'headers') {
+                return extractToken(token);
+            }
+        })
+        .isJWT()
+        .withMessage(
+            'Invalid Authorization header, must be Bearer authorization'
+        );
+};
+
 //EXPORT
 export {
+    authorization,
     emailAddressValidation,
     loginPasswordValidation,
 };
