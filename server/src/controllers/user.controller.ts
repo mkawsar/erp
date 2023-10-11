@@ -132,7 +132,7 @@ const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
         };
 
         const count = await User.countDocuments({});
-        let users = await User.find()
+        let users = await User.find({}, '-password')
             .populate('role')
             .limit(pageOptions.limit * 1)
             .skip((pageOptions.page - 1) * pageOptions.limit)
@@ -151,4 +151,15 @@ const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export default {accountVerify, createUser, getAllUser};
+// Get user details
+const getUserDetails = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userID = req?.params?.userID;
+        let user = await User.findById(userID, '-password').populate('role');
+        return jsonOne<IUser>(res, 200, user);
+    } catch (error) {
+        next(error);
+    }
+}
+
+export default {accountVerify, createUser, getAllUser, getUserDetails};

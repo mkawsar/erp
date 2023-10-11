@@ -40,5 +40,10 @@ _router
     .route('/list')
     .get(validate([authorization()]), auth, userController.getAllUser);
 
+// Get user details
+_router
+    .route('/:userID/details')
+    .get(validate([authorization()]), auth, userController.getUserDetails);
+
 //EXPORT
 export const router = _router;

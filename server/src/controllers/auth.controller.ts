@@ -69,7 +69,7 @@ const login = async (req: Request, res: Response, next: NextFunction): Promise<A
 
 const user = async (req: Request, res: Response, next: NextFunction) => {
     const userID = req['tokenPayload'].id;
-    let user = await User.findById(userID).populate('role');
+    let user = await User.findById(userID, '-password').populate('role');
     return jsonOne<IUser>(res, 200, user);
 }
 
