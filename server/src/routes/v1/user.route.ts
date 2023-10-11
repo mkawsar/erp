@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { userController } from '../../controllers';
+import auth from '../../middlewares/auth.middleware';
 import { password } from '../../validators/user.validator';
 import validate from '../../middlewares/validation.middleware';
 import { requiredTextField } from '../../validators/common.validator';
-import { emailAddressValidation } from '../../validators/auth.validator';
+import { emailAddressValidation, authorization } from '../../validators/auth.validator';
 
 //ROLE ROUTES//
 
@@ -33,6 +34,11 @@ _router
         ]),
         userController.accountVerify
     );
+
+// Get all user
+_router
+    .route('/list')
+    .get(validate([authorization()]), auth, userController.getAllUser);
 
 //EXPORT
 export const router = _router;
