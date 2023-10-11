@@ -45,5 +45,23 @@ _router
     .route('/:userID/details')
     .get(validate([authorization()]), auth, userController.getUserDetails);
 
+// Update user information
+_router
+    .route('/info/update')
+    .put(
+        validate([
+            authorization(),
+            requiredTextField('firstName', 'FirstName', { min: 2, max: 255 }),
+            requiredTextField('lastName', 'LastName', { min: 2, max: 255 }),
+            requiredTextField('dateOfBirth', 'Date Of Birth', {
+                min: 2,
+                max: 255,
+            }),
+            requiredTextField('residence', 'Residence', { min: 2, max: 255 }),
+            requiredTextField('avatar', 'Avatar', { min: 2, max: 255 }),
+        ]),
+        auth, userController.updateUserInfo
+    );
+
 //EXPORT
 export const router = _router;

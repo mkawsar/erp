@@ -160,6 +160,40 @@ const getUserDetails = async (req: Request, res: Response, next: NextFunction) =
     } catch (error) {
         next(error);
     }
+};
+
+// Update user information
+const updateUserInfo = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const body = req.body;
+        const payload = req['tokenPayload'];
+        const userID = payload['id'];
+        let user = await User.findById(userID);
+
+        //If user not found
+        if (!user) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'User Not Found.',
+                code: 400,
+            });
+        }
+
+        let updateUser = await User.findByIdAndUpdate({ _id: userID }, {
+            firstName: body.firstName,
+            lastName: body.lastName,
+            gender: body.gender,
+            dateOfBirth: body.dateOfBirth,
+            residence: body.residence,
+            avatar: body.avatar,
+            isProfileCompleted: true,
+        }, { new: true });
+
+
+        return jsonOne<any>(res, 200, updateUser);
+    } catch (error) {
+        next(error);
+    }
 }
 
-export default {accountVerify, createUser, getAllUser, getUserDetails};
+export default {accountVerify, createUser, getAllUser, getUserDetails, updateUserInfo};
