@@ -18,5 +18,10 @@ _router
     .route('/user')
     .get(validate([authorization()]), auth, authController.user);
 
+// Forgot password
+_router
+    .route('/forgot/password')
+    .post(validate([emailAddressValidation()]), authController.forgotPassword);
+
 //EXPORT
 export const router = _router;
