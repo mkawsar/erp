@@ -1,7 +1,7 @@
 import OTP from '../models/opt';
 import { generateOtp } from '../utils';
 import { compare, hash } from 'bcrypt';
-import { generateJWT } from '../utils';
+import { generateJWT, verifyOtp } from '../utils';
 import { OtpType } from '../utils/enums';
 import HttpError from '../utils/httpError';
 import { jsonOne } from '../utils/general';
@@ -129,4 +129,81 @@ const forgotPassword = async (req: Request, res: Response, next: NextFunction) =
     }
 };
 
-export default {forgotPassword, login, user};
+//VERIFY OTP FOR FORGOT PASSWORD
+const forgotPasswordVerifyEmail = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { email, otp } = req.body;
+
+        let user = await User.findOne({ email }).populate('role');
+
+        // CHECK FOR USER VERIFIED AND EXISTING
+        if (!user) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'You have entered an invalid email address.',
+                code: 400,
+            });
+        } else if (!user.isEmailVerified) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'Please confirm your account by confirmation email OTP and try again',
+                code: 400,
+            });
+        }
+
+        //CHECK FOR OTP
+        let isOtpValid = await verifyOtp(user?._id, otp, OtpType.FORGET);
+        if (!isOtpValid) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'This OTP has expired.',
+                code: 400,
+            });
+        }
+
+        return jsonOne<string>(res, 200, 'Able to reset the password');
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Reset user password
+const resetForgotPassword = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { email, otp, password, confirm_password } = req?.body;
+        let user = await User.findOne({ email });
+
+        // CHECK FOR USER VERIFIED AND EXISTING
+        if (!user) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'You have entered an invalid email address.',
+                code: 400,
+            });
+        }
+
+        //CHECK FOR OTP
+        let isOtpValid = await verifyOtp(user._id, otp, OtpType.FORGET);
+        if (!isOtpValid) {
+            throw new HttpError({
+                title: 'bad_request',
+                detail: 'This OTP has Invalid.',
+                code: 400,
+            });
+        }
+
+        //ADD NEW PASSWORD
+        const hashPassword = await hash(password, 12);
+        user.password = hashPassword;
+
+        await user.save();
+
+        await OTP.findByIdAndDelete(isOtpValid);
+        return jsonOne<string>(res, 200, 'Password updated successfully');
+    } catch (error) {
+        next(error);
+    }
+};
+
+export default {forgotPassword, forgotPasswordVerifyEmail, login, resetForgotPassword, user};
