@@ -7,10 +7,12 @@
       border-top: 1px solid $table-line-color;
     }
   }
+
   thead th {
     border-bottom: 1px solid $table-line-color;
     border-top: 0;
   }
+
   > thead > tr > th {
     border-bottom-width: 0;
     font-size: $font-size-h5;
@@ -24,6 +26,7 @@
     padding: 0;
     width: 15px;
   }
+
   > thead > tr > th,
   > tbody > tr > th,
   > tfoot > tr > th,
@@ -37,12 +40,14 @@
   .th-description {
     max-width: 150px;
   }
+
   .td-price {
     font-size: 26px;
     font-weight: $font-weight-light;
     margin-top: 5px;
     text-align: right;
   }
+
   .td-total {
     font-weight: $font-weight-bold;
     font-size: $font-size-h5;
@@ -68,9 +73,11 @@
   tbody > tr:nth-of-type(2n+1) {
     background-color: #fff;
   }
+
   tbody > tr:nth-of-type(2n) {
     background-color: $pale-bg;
   }
+
   > thead > tr > th,
   > tbody > tr > th,
   > tfoot > tr > th,

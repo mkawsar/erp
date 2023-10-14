@@ -3,15 +3,15 @@
     <!--Stats cards-->
     <div class="row">
       <div
-        class="col-md-6 col-xl-3"
-        v-for="stats in statsCards"
-        :key="stats.title"
+          class="col-md-6 col-xl-3"
+          v-for="stats in statsCards"
+          :key="stats.title"
       >
         <stats-card>
           <div
-            class="icon-big text-center"
-            :class="`icon-${stats.type}`"
-            slot="header"
+              class="icon-big text-center"
+              :class="`icon-${stats.type}`"
+              slot="header"
           >
             <i :class="stats.icon"></i>
           </div>
@@ -30,10 +30,10 @@
     <div class="row">
       <div class="col-12">
         <chart-card
-          title="Users behavior"
-          sub-title="24 Hours performance"
-          :chart-data="usersChart.data"
-          :chart-options="usersChart.options"
+            title="Users behavior"
+            sub-title="24 Hours performance"
+            :chart-data="usersChart.data"
+            :chart-options="usersChart.options"
         >
           <span slot="footer">
             <i class="ti-reload"></i> Updated 3 minutes ago
@@ -48,10 +48,10 @@
 
       <div class="col-md-6 col-12">
         <chart-card
-          title="Email Statistics"
-          sub-title="Last campaign performance"
-          :chart-data="preferencesChart.data"
-          chart-type="Pie"
+            title="Email Statistics"
+            sub-title="Last campaign performance"
+            :chart-data="preferencesChart.data"
+            chart-type="Pie"
         >
           <span slot="footer">
             <i class="ti-timer"></i> Campaign set 2 days ago</span
@@ -66,10 +66,10 @@
 
       <div class="col-md-6 col-12">
         <chart-card
-          title="2015 Sales"
-          sub-title="All products including Taxes"
-          :chart-data="activityChart.data"
-          :chart-options="activityChart.options"
+            title="2015 Sales"
+            sub-title="All products including Taxes"
+            :chart-data="activityChart.data"
+            :chart-options="activityChart.options"
         >
           <span slot="footer">
             <i class="ti-check"></i> Data information certified
@@ -84,8 +84,9 @@
   </div>
 </template>
 <script>
-import { StatsCard, ChartCard } from "@/components/index";
+import {StatsCard, ChartCard} from "@/components/index";
 import Chartist from "chartist";
+
 export default {
   components: {
     StatsCard,

@@ -52,7 +52,7 @@
   transform: translate3d($value, 0, 0);
 }
 
-@mixin transform-translate-3d($value){
+@mixin transform-translate-3d($value) {
   -webkit-transform: translate3d($value, 0, 0);
   -moz-transform: translate3d($value, 0, 0);
   -o-transform: translate3d($value, 0, 0);

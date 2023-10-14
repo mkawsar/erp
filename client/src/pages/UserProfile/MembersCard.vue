@@ -7,15 +7,15 @@
             <div class="col-3">
               <div class="avatar">
                 <img
-                  :src="member.image"
-                  alt="Circle Image"
-                  class="rounded img-fluid"
+                    :src="member.image"
+                    alt="Circle Image"
+                    class="rounded img-fluid"
                 />
               </div>
             </div>
             <div class="col-6">
               {{ member.name }}
-              <br />
+              <br/>
               <span :class="getStatusClass(member.status)">
                 <small>{{ member.status }}</small>
               </span>

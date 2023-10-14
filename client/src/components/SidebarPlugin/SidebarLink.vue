@@ -1,10 +1,10 @@
 <template>
   <component
-    :is="tag"
-    @click.native="hideSidebar"
-    class="nav-item"
-    v-bind="$attrs"
-    tag="li"
+      :is="tag"
+      @click.native="hideSidebar"
+      class="nav-item"
+      v-bind="$attrs"
+      tag="li"
   >
     <a class="nav-link">
       <slot>
@@ -23,10 +23,12 @@ export default {
       default: true,
     },
     addLink: {
-      default: () => {},
+      default: () => {
+      },
     },
     removeLink: {
-      default: () => {},
+      default: () => {
+      },
     },
   },
   props: {

@@ -10,7 +10,7 @@
         </div>
       </div>
       <div v-if="$slots.footer">
-        <hr />
+        <hr/>
         <slot name="footer"></slot>
       </div>
     </div>

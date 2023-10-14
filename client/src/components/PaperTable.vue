@@ -1,22 +1,22 @@
 <template>
   <table class="table" :class="tableClass">
     <thead>
-      <slot name="columns">
-        <th v-for="column in columns" :key="column">{{ column }}</th>
-      </slot>
+    <slot name="columns">
+      <th v-for="column in columns" :key="column">{{ column }}</th>
+    </slot>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in data" :key="index">
-        <slot :row="item">
-          <td
+    <tr v-for="(item, index) in data" :key="index">
+      <slot :row="item">
+        <td
             v-for="(column, index) in columns"
             :key="index"
             v-if="hasValue(item, column)"
-          >
-            {{ itemValue(item, column) }}
-          </td>
-        </slot>
-      </tr>
+        >
+          {{ itemValue(item, column) }}
+        </td>
+      </slot>
+    </tr>
     </tbody>
   </table>
 </template>

@@ -9,13 +9,13 @@
   &:focus,
   &:active,
   &.active,
-  .show > &.dropdown-toggle{
+  .show > &.dropdown-toggle {
     background-color: $btn-states-color;
     color: $white-color;
     border-color: $btn-states-color;
   }
 
-  .caret{
+  .caret {
     border-top-color: $white-color;
   }
 
@@ -26,22 +26,22 @@
     &:focus,
     &:active,
     &.active,
-    .open > &.dropdown-toggle{
+    .open > &.dropdown-toggle {
       background-color: $transparent-bg;
       color: $btn-states-color;
     }
 
-    .caret{
+    .caret {
       border-top-color: $btn-color;
     }
   }
 
-  .caret{
+  .caret {
     border-top-color: $white-color;
   }
 }
 
-@mixin btn-outline-styles($btn-color, $btn-states-color){
+@mixin btn-outline-styles($btn-color, $btn-states-color) {
   border-color: $btn-color;
   color: $btn-color;
   @include opacity(1);
@@ -54,12 +54,13 @@
     background-color: $btn-color;
     color: $fill-font-color;
     border-color: $btn-color;
-    .caret{
+
+    .caret {
       border-top-color: $fill-font-color;
     }
   }
 
-  .caret{
+  .caret {
     border-top-color: $white-color;
   }
 
@@ -79,11 +80,11 @@
   }
 }
 
-@mixin btn-size($padding-vertical, $padding-horizontal, $font-size, $line-height){
+@mixin btn-size($padding-vertical, $padding-horizontal, $font-size, $line-height) {
   font-size: $font-size;
   padding: $padding-vertical $padding-horizontal;
 
-  &.btn-simple{
+  &.btn-simple {
     padding: $padding-vertical + 2 $padding-horizontal;
   }
 

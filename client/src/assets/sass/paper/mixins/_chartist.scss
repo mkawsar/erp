@@ -67,21 +67,21 @@ $ct-include-alternative-responsive-containers: $ct-include-classes !default;
 // Series names and colors. This can be extended or customized as desired. Just add more series and colors.
 $ct-series-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) !default;
 $ct-series-colors: (
-  $info-color,
-  $warning-color,
-  $danger-color,
-  $success-color,
-  $primary-color,
-  rgba($info-color, .8),
-  rgba($success-color, .8),
-  rgba($warning-color, .8),
-  rgba($danger-color, .8),
-  rgba($primary-color, .8),
-  rgba($info-color, .6),
-  rgba($success-color, .6),
-  rgba($warning-color, .6),
-  rgba($danger-color, .6),
-  rgba($primary-color, .6)
+        $info-color,
+        $warning-color,
+        $danger-color,
+        $success-color,
+        $primary-color,
+        rgba($info-color, .8),
+        rgba($success-color, .8),
+        rgba($warning-color, .8),
+        rgba($danger-color, .8),
+        rgba($primary-color, .8),
+        rgba($info-color, .6),
+        rgba($success-color, .6),
+        rgba($warning-color, .6),
+        rgba($danger-color, .6),
+        rgba($primary-color, .6)
 ) !default;
 
 // Paper Kit Colors

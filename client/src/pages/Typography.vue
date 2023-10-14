@@ -103,7 +103,7 @@
             <h2>
               <p class="category">Small Tag</p>
               Header with small subtitle
-              <br />
+              <br/>
               <small>".small" is a tag for the headers</small>
             </h2>
           </div>
@@ -171,7 +171,7 @@
                     Integer posuere erat a ante.
                   </p>
                   <small
-                    >Someone famous in
+                  >Someone famous in
                     <cite title="Source Title">Source Title</cite>
                   </small>
                 </blockquote>

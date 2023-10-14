@@ -6,6 +6,7 @@
   z-index: 1;
   background-size: cover;
   background-position: center center;
+
   .sidebar-wrapper {
     position: relative;
     height: 100%;
@@ -15,6 +16,7 @@
     z-index: 4;
     box-shadow: inset -1px 0px 0px 0px $medium-gray;
   }
+
   .sidebar-background {
     position: absolute;
     z-index: 1;
@@ -54,18 +56,18 @@
       line-height: 40px;
       text-align: left;
 
-      .logo-img{
-          width: 40px;
-          display: inline-block;
-          height: 40px;
-          margin-left: 0px;
-          margin-right: 10px;
-          background: white;
-          border-radius: 40px;
-          text-align: center;
+      .logo-img {
+        width: 40px;
+        display: inline-block;
+        height: 40px;
+        margin-left: 0px;
+        margin-right: 10px;
+        background: white;
+        border-radius: 40px;
+        text-align: center;
 
-        img{
-            max-width: 21px;
+        img {
+          max-width: 21px;
         }
       }
     }
@@ -76,6 +78,7 @@
 
     .nav-item {
       width: 100%;
+
       .nav-link {
         margin: 10px 0px;
         padding-left: 25px;
@@ -129,9 +132,11 @@
   &[data-background-color="white"] {
     @include sidebar-background-color($white-background-color, $default-color);
   }
+
   &[data-background-color="black"] {
     @include sidebar-background-color($black-background-color, $white-color);
   }
+
   &[data-background-color="darkblue"] {
     @include sidebar-background-color($darkblue-background-color, $white-color);
   }
@@ -139,15 +144,19 @@
   &[data-active-color="primary"] {
     @include sidebar-active-color($primary-color);
   }
+
   &[data-active-color="info"] {
     @include sidebar-active-color($info-color);
   }
+
   &[data-active-color="success"] {
     @include sidebar-active-color($success-color);
   }
+
   &[data-active-color="warning"] {
     @include sidebar-active-color($warning-color);
   }
+
   &[data-active-color="danger"] {
     @include sidebar-active-color($danger-color);
   }

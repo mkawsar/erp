@@ -15,14 +15,14 @@
             <button type="button" aria-hidden="true" class="close">×</button>
             <span data-notify="icon" class="ti-bell"></span>
             <span data-notify="message"
-              >This is a notification with close button and icon.</span
+            >This is a notification with close button and icon.</span
             >
           </div>
           <div class="alert alert-info alert-with-icon" data-notify="container">
             <button type="button" aria-hidden="true" class="close">×</button>
             <span data-notify="icon" class="ti-pie-chart"></span>
             <span data-notify="message"
-              >This is a notification with close button and icon and have many
+            >This is a notification with close button and icon and have many
               lines. You can see that the icon and the close button are always
               vertically aligned. This is a beautiful notification. So you don't
               have to worry about the style.</span
@@ -62,8 +62,8 @@
         </div>
       </div>
 
-      <br />
-      <br />
+      <br/>
+      <br/>
 
       <div class="places-buttons">
         <div class="row d-flex justify-content-center">
@@ -77,58 +77,64 @@
         <div class="row d-flex justify-content-center">
           <div class="col-md-3">
             <p-button
-              round
-              outline
-              block
-              @click.native="notifyVue('top', 'left')"
-              >Top Left</p-button
+                round
+                outline
+                block
+                @click.native="notifyVue('top', 'left')"
+            >Top Left
+            </p-button
             >
           </div>
           <div class="col-md-3">
             <p-button
-              round
-              outline
-              block
-              @click.native="notifyVue('top', 'center')"
-              >Top Center</p-button
+                round
+                outline
+                block
+                @click.native="notifyVue('top', 'center')"
+            >Top Center
+            </p-button
             >
           </div>
           <div class="col-md-3">
             <p-button
-              round
-              outline
-              block
-              @click.native="notifyVue('top', 'right')"
-              >Top Right</p-button
+                round
+                outline
+                block
+                @click.native="notifyVue('top', 'right')"
+            >Top Right
+            </p-button
             >
           </div>
         </div>
         <div class="row d-flex justify-content-center">
           <div class="col-md-3">
             <p-button
-              round
-              outline
-              block
-              @click.native="notifyVue('bottom', 'left')"
-              >Bottom Left</p-button
+                round
+                outline
+                block
+                @click.native="notifyVue('bottom', 'left')"
+            >Bottom Left
+            </p-button
             >
           </div>
           <div class="col-md-3">
             <p-button
-              round
-              outline
-              block
-              @click.native="notifyVue('bottom', 'center')"
-              >Bottom Center</p-button
+                round
+                outline
+                block
+                @click.native="notifyVue('bottom', 'center')"
+            >Bottom Center
+            </p-button
             >
           </div>
           <div class="col-md-3">
             <p-button
-              round
-              outline
-              block
-              @click.native="notifyVue('bottom', 'right')"
-              >Bottom Right</p-button
+                round
+                outline
+                block
+                @click.native="notifyVue('bottom', 'right')"
+            >Bottom Right
+            </p-button
             >
           </div>
         </div>

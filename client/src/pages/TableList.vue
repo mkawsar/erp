@@ -13,11 +13,11 @@
       <card class="card-plain">
         <div class="table-full-width table-responsive">
           <paper-table
-            type="hover"
-            :title="table2.title"
-            :sub-title="table2.subTitle"
-            :data="table2.data"
-            :columns="table2.columns"
+              type="hover"
+              :title="table2.title"
+              :sub-title="table2.subTitle"
+              :data="table2.data"
+              :columns="table2.columns"
           >
           </paper-table>
         </div>
@@ -26,7 +26,8 @@
   </div>
 </template>
 <script>
-import { PaperTable } from "@/components";
+import {PaperTable} from "@/components";
+
 const tableColumns = ["Id", "Name", "Salary", "Country", "City"];
 const tableData = [
   {

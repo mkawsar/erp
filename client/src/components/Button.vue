@@ -1,10 +1,10 @@
 <template>
   <component
-    :is="tag"
-    :type="nativeType"
-    :disabled="disabled || loading"
-    class="btn"
-    :class="[
+      :is="tag"
+      :type="nativeType"
+      :disabled="disabled || loading"
+      class="btn"
+      :class="[
       { 'btn-round': round },
       { 'btn-block': block },
       { 'btn-just-icon': icon },

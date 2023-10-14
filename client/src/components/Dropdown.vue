@@ -1,20 +1,20 @@
 <template>
   <component
-    :is="tag"
-    class="dropdown"
-    :class="{ show: isOpen }"
-    @click="toggleDropDown"
-    v-click-outside="closeDropDown"
+      :is="tag"
+      class="dropdown"
+      :class="{ show: isOpen }"
+      @click="toggleDropDown"
+      v-click-outside="closeDropDown"
   >
     <a
-      class="dropdown-toggle btn-rotate"
-      :class="titleClasses"
-      data-toggle="dropdown"
+        class="dropdown-toggle btn-rotate"
+        :class="titleClasses"
+        data-toggle="dropdown"
     >
       <slot name="title">
         <i :class="icon"></i>
         <span class="notification"
-          >{{ title }}
+        >{{ title }}
           <b class="caret"></b>
         </span>
       </slot>

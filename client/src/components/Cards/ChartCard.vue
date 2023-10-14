@@ -18,7 +18,7 @@
         <div class="chart-legend">
           <slot name="legend"></slot>
         </div>
-        <hr />
+        <hr/>
         <div class="stats">
           <slot name="footer"></slot>
         </div>
@@ -29,6 +29,7 @@
 </template>
 <script>
 import Card from "./Card.vue";
+
 export default {
   name: "chart-card",
   components: {
