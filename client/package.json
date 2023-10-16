@@ -11,14 +11,21 @@
         "dev": "npm run serve"
     },
     "dependencies": {
+        "axios": "^1.5.1",
         "bootstrap": "4.6.2",
         "chartist": "0.11.0",
+        "element-ui": "^2.15.14",
         "es6-promise": "4.2.8",
         "eslint-plugin-vue": "^9.8.0",
+        "jquery": "^3.7.1",
+        "lodash": "^4.17.21",
+        "sweetalert2": "^11.6.13",
+        "vee-validate": "^2.2.15",
         "vue": "2.7.14",
         "vue-clickaway": "2.2.2",
-        "vue-notifyjs": "0.3.0",
-        "vue-router": "3.0.1"
+        "vue-notifyjs": "^0.3.0",
+        "vue-router": "3.0.1",
+        "vuex": "^3.6.2"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^5.0.8",
