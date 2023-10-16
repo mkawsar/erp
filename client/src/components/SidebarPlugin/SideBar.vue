@@ -131,6 +131,11 @@ export default {
             immediate: true,
         });
     },
+    beforeDestroy() {
+        if (this.$sidebar.showSidebar) {
+            this.$sidebar.showSidebar = false
+        }
+    }
 };
 </script>
 <style></style>

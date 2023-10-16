@@ -1,7 +1,12 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">{{ routeName }}</a>
+            <div class="navbar-minimize">
+                <button class="btn btn-fill btn-icon" @click="minimizeSidebar">
+                    <i :class="$sidebar.isMinimized ? 'ti-menu-alt' : 'ti-more-alt'"></i>
+                </button>
+            </div>
+            <!-- <a class="navbar-brand">{{this.$route.meta.title || 'Title Goes Here' }}</a> -->
             <button
                 class="navbar-toggler navbar-burger"
                 type="button"
@@ -45,6 +50,9 @@ export default {
         hideSidebar() {
             this.$sidebar.displaySidebar(false);
         },
+        minimizeSidebar () {
+            this.$sidebar.toggleMinimize(this.$store);
+        }
     },
 };
 </script>

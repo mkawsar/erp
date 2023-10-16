@@ -35,6 +35,24 @@
     text-transform: uppercase;
   }
 
+  .navbar-minimize{
+    float: left;
+
+    .btn{
+      margin: $navbar-margin-btn-vertical - 2px 3px;
+    }
+
+    .ti-more-alt{
+      display: inline-block;
+      min-width: 14px;
+      @include rotate-vertical();
+    }
+    .btn-simple{
+      margin: $navbar-margin-btn;
+      font-size: $font-size-base;
+    }
+  }
+
   .nav-link {
     i {
       font-size: 16px;
