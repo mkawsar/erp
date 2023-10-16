@@ -9,14 +9,25 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        user: {}
+        user: {},
+        routes: [
+            {
+                name: 'Dashboard',
+                icon: 'ti-dashboard',
+                path: '/dashboard',
+                meta: {title: 'Dashboard'},
+            }
+        ]
     },
     getters: {
-        ...mapGetters({
-            getters
-        }),
+        // ...mapGetters({
+        //     getters
+        // }),
         user: function (state) {
             return state.user;
+        },
+        getRoutes(state) {
+            return state.routes;
         }
     },
     mutations: {

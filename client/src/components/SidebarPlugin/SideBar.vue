@@ -20,25 +20,26 @@
             </div>
             <slot></slot>
             <ul class="nav">
+                <pre>{{ $sidebar }}</pre>
                 <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
                 <slot name="links">
-                    <sidebar-link
-                        v-for="(link, index) in sidebarLinks"
-                        :key="index"
-                        :to="link.path"
-                        :name="link.name"
-                        :icon="link.icon"
-                    >
-                    </sidebar-link>
+                    <sidebar-item v-for="(link, index) in sidebarLinks"
+                        key="link.name + index"
+                        :link="link"
+                        v-show="$auth.can(this, link)">
+                        <sidebar-item v-for="(subLink, index) in link.children"
+                            :key="subLink.name + index"
+                             :link="subLink">
+                        </sidebar-item>
+                    </sidebar-item>
                 </slot>
             </ul>
-            <moving-arrow :move-y="arrowMovePx"></moving-arrow>
         </div>
     </div>
 </template>
 <script>
-import MovingArrow from "./MovingArrow.vue";
-import SidebarLink from "./SidebarLink";
+// import MovingArrow from "./MovingArrow.vue";
+// import SidebarLink from "./SidebarLink";
 
 export default {
     props: {
@@ -83,10 +84,6 @@ export default {
             addLink: this.addLink,
             removeLink: this.removeLink,
         };
-    },
-    components: {
-        MovingArrow,
-        SidebarLink,
     },
     computed: {
         /**

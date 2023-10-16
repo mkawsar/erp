@@ -9,12 +9,18 @@ import "vue-notifyjs/themes/default.css";
 
 Vue.use(PaperDashboard);
 
+import sidebarLinks from './sidebarLinks';
+import SideBar from './components/SidebarPlugin';
+
+Vue.use(SideBar, {navLinks: sidebarLinks});
 
 window.$ = window.jQuery = require('jquery');
 
 /* eslint-disable no-new */
-new Vue({
-    router,
+const app = new Vue({
+    el: '#app',
+    router: router,
     store: store,
-    render: (h) => h(App),
-}).$mount("#app");
+    render: h => h(App)
+});
+window.app = app;

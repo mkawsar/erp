@@ -6,7 +6,7 @@
                     <i :class="$sidebar.isMinimized ? 'ti-menu-alt' : 'ti-more-alt'"></i>
                 </button>
             </div>
-            <!-- <a class="navbar-brand">{{this.$route.meta.title || 'Title Goes Here' }}</a> -->
+            <a class="navbar-brand">{{this.$route.meta.title || 'Title Goes Here' }}</a>
             <button
                 class="navbar-toggler navbar-burger"
                 type="button"

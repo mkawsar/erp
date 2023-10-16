@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <side-bar>
+        <side-bar type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
             <user-menu></user-menu>
             <template slot="links">
                 <!-- <sidebar-link to="/dashboard" name="Dashboard" icon="ti-panel"/>
@@ -32,6 +32,11 @@ import DashboardContent from "./Content.vue";
 import UserMenu from '../../components/SidebarPlugin/UserMenu.vue';
 
 export default {
+    data() {
+        return {
+            routes: []
+        }
+    },
     components: {
         TopNavbar,
         ContentFooter,
@@ -44,6 +49,6 @@ export default {
                 this.$sidebar.displaySidebar(false);
             }
         },
-    },
+    }
 };
 </script>

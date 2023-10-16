@@ -1,12 +1,12 @@
-import Sidebar from "./SideBar.vue";
-import SidebarLink from "./SidebarLink";
+import Sidebar from './SideBar.vue'
+import SidebarItem from './SidebarItem.vue'
 
 const SidebarStore = {
     showSidebar: false,
-    sidebarLinks: [],
+    navLinks: [],
     isMinimized: false,
     displaySidebar(value) {
-        this.showSidebar = value;
+        this.showSidebar = value
     },
     toggleMinimize(store) {
         document.body.classList.toggle('sidebar-mini');
@@ -31,17 +31,27 @@ const SidebarStore = {
 };
 
 const SidebarPlugin = {
-    install(Vue) {
-        let app = new Vue({
-            data: {
-                sidebarStore: SidebarStore,
-            },
+    install(Vue, options) {
+        console.log(options);
+        if (options && options.sidebarLinks) {
+            SidebarStore.sidebarLinks = options.sidebarLinks
+        }
+        Vue.mixin({
+            data() {
+                return {
+                    sidebarStore: SidebarStore
+                }
+            }
         });
 
-        Vue.prototype.$sidebar = app.sidebarStore;
-        Vue.component("side-bar", Sidebar);
-        Vue.component("sidebar-link", SidebarLink);
-    },
+        Object.defineProperty(Vue.prototype, '$sidebar', {
+            get() {
+                return this.$root.sidebarStore
+            }
+        });
+        Vue.component('side-bar', Sidebar);
+        Vue.component('sidebar-item', SidebarItem)
+    }
 };
 
-export default SidebarPlugin;
+export default SidebarPlugin
