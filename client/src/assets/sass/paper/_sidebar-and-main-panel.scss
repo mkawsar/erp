@@ -29,6 +29,93 @@
     background-position: center center;
   }
 
+  > .nav,
+    .user .info{
+      [data-toggle="collapse"] ~ div > ul > li > a{
+        .sidebar-normal{
+          margin: 0;
+          position: relative;
+          @include transform-translate-x(0px);
+          opacity: 1;
+          white-space: nowrap;
+          display: block;
+        }
+
+        .sidebar-mini{
+          text-transform: uppercase;
+          float: left;
+          width: 30px;
+          text-align: center;
+          margin-right: 15px;
+          letter-spacing: 1px;
+        }
+
+        i{
+          font-size: 17px;
+          line-height: 20px;
+          width: 26px;
+        }
+      }
+    }
+}
+
+.user{
+  position: relative;
+  margin-top: 20px;
+  padding-bottom: 20px;
+
+  &:after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    right: 15px;
+    width: calc(100% - 30px);
+    height: 1px;
+    background-color: rgba(255,255,255, .3);
+  }
+
+  .photo{
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+    float: left;
+    margin-right: 11px;
+    z-index: 5;
+    border-radius: 50%;
+    margin-left: 23px;
+
+    img{
+      width: 100%;
+    }
+  }
+
+  .info{
+    a{
+      padding: $padding-base-vertical 25px;
+      white-space: nowrap;
+      display: block;
+      opacity: .7;
+      position: relative;
+
+      &:hover,
+      &:visited{
+        opacity: 1;
+      }
+    }
+
+    > a > span{
+      opacity: 1;
+      line-height: 22px;
+      display: block;
+      position: relative;
+    }
+
+    .caret{
+      position: absolute;
+      top: 11px;
+      right: 0px;
+    }
+  }
 }
 
 .wrapper .sidebar {
