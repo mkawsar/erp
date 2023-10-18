@@ -51,13 +51,17 @@ export default {
         },
     },
     created() {
-        let allRoutes = this.$router?.options?.routes[0]?.children;
-        allRoutes.forEach(route => {
-            let routeObj = {};
-            routeObj.path = route?.path;
-            routeObj.icon = route?.meta?.icon;
-            routeObj.name = route?.meta?.title;
-            this.routes.push(routeObj);
+        let allRoutes = this.$router?.options?.routes;
+        allRoutes.forEach(routes => {
+            if (routes?.children) {
+                routes?.children.forEach(route => {
+                    let routeObj = {};
+                    routeObj.path = route?.path;
+                    routeObj.icon = route?.meta?.icon;
+                    routeObj.name = route?.meta?.title;
+                    this.routes.push(routeObj);
+                });
+            }
         });
     }
 };
