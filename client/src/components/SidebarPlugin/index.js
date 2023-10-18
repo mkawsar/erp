@@ -32,7 +32,6 @@ const SidebarStore = {
 
 const SidebarPlugin = {
     install(Vue, options) {
-        console.log(options);
         if (options && options.sidebarLinks) {
             SidebarStore.sidebarLinks = options.sidebarLinks
         }

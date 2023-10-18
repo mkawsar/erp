@@ -1,18 +1,14 @@
 <template>
     <div class="wrapper">
-        <side-bar type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
+        <side-bar type="sidebar">
             <user-menu></user-menu>
             <template slot="links">
-                <!-- <sidebar-link to="/dashboard" name="Dashboard" icon="ti-panel"/>
-                <sidebar-link to="/stats" name="User Profile" icon="ti-user"/>
-                <sidebar-link
-                    to="/table-list"
-                    name="Table List"
-                    icon="ti-view-list-alt"
-                />
-                <sidebar-link to="/typography" name="Typography" icon="ti-text"/>
-                <sidebar-link to="/icons" name="Icons" icon="ti-pencil-alt2"/>
-                <sidebar-link to="/notifications" name="Notifications" icon="ti-bell"/> -->
+                <sidebar-link v-for="(route, index) in routes" 
+                    :key="`${index}`" 
+                    :to="`${route.path}`" 
+                    :name="`${route.name}`" 
+                    :icon="`${route.icon}`">
+                </sidebar-link>
             </template>
         </side-bar>
         <div class="main-panel">
@@ -30,6 +26,8 @@ import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./Content.vue";
 import UserMenu from '../../components/SidebarPlugin/UserMenu.vue';
+import MovingArrow from "../../components/SidebarPlugin/MovingArrow.vue";
+import SidebarLink from "../../components/SidebarPlugin/SidebarLink.vue";
 
 export default {
     data() {
@@ -41,7 +39,9 @@ export default {
         TopNavbar,
         ContentFooter,
         DashboardContent,
-        UserMenu
+        UserMenu,
+        MovingArrow,
+        SidebarLink
     },
     methods: {
         toggleSidebar() {
@@ -49,6 +49,16 @@ export default {
                 this.$sidebar.displaySidebar(false);
             }
         },
+    },
+    created() {
+        let allRoutes = this.$router?.options?.routes[0]?.children;
+        allRoutes.forEach(route => {
+            let routeObj = {};
+            routeObj.path = route?.path;
+            routeObj.icon = route?.meta?.icon;
+            routeObj.name = route?.meta?.title;
+            this.routes.push(routeObj);
+        });
     }
 };
 </script>

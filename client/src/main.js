@@ -9,10 +9,9 @@ import "vue-notifyjs/themes/default.css";
 
 Vue.use(PaperDashboard);
 
-import sidebarLinks from './sidebarLinks';
 import SideBar from './components/SidebarPlugin';
 
-Vue.use(SideBar, {navLinks: sidebarLinks});
+Vue.use(SideBar);
 
 window.$ = window.jQuery = require('jquery');
 

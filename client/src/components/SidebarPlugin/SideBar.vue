@@ -20,7 +20,6 @@
             </div>
             <slot></slot>
             <ul class="nav">
-                <pre>{{ $sidebar }}</pre>
                 <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
                 <slot name="links">
                     <sidebar-item v-for="(link, index) in sidebarLinks"
@@ -68,10 +67,6 @@ export default {
                 ];
                 return acceptedValues.indexOf(value) !== -1;
             },
-        },
-        sidebarLinks: {
-            type: Array,
-            default: () => [],
         },
         autoClose: {
             type: Boolean,
