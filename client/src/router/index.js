@@ -8,30 +8,30 @@ const router = createRouter();
 
 // configure router
 
-// router.beforeEach((to, from, next) => {
-//     if (to.meta.requiresAuth) {
-//         const token = window.localStorage.getItem('token');
-//         if (!token) {
-//             next({ path: '/auth/login' });
-//             return false;
-//         } else {
-//             let routeRoles = to.meta.roles;
-//             let storageRoles = authService.roles();
-//             if (routeRoles && storageRoles) {
-//                 if (routeRoles.some(routeRole => storageRoles.includes(routeRole))) {
-//                     next();
-//                 } else {
-//                     next({path: '/auth/login' });
-//                     return false;
-//                 }
-//             } else {
-//                 next({path: '/auth/login'});
-//                 return false;
-//             }
-//         }
-//     }
-//     next();
-// });
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth) {
+        const token = window.localStorage.getItem('token');
+        if (!token) {
+            next({ path: '/auth/login' });
+            return false;
+        } else {
+            let routeRoles = to.meta.roles;
+            let storageRoles = authService.roles();
+            if (routeRoles && storageRoles) {
+                if (routeRoles.some(routeRole => storageRoles.includes(routeRole))) {
+                    next();
+                } else {
+                    next({path: '/auth/login' });
+                    return false;
+                }
+            } else {
+                next({path: '/auth/login'});
+                return false;
+            }
+        }
+    }
+    next();
+});
 
 router.afterEach((to, from) => {
     Vue.nextTick(() => {

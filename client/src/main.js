@@ -14,6 +14,8 @@ import {store} from './store';
 import PaperDashboard from "./plugins/paperDashboard";
 import "vue-notifyjs/themes/default.css";
 
+require('./bootstrap');
+
 Vue.prototype.$_ = _;
 Vue.prototype.$moment = moment;
 
@@ -30,7 +32,6 @@ Vue.use(SideBar);
 
 window.$ = window.jQuery = require('jquery');
 
-/* eslint-disable no-new */
 const app = new Vue({
     el: '#app',
     router: router,

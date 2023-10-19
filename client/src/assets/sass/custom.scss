@@ -1,14 +1,14 @@
 .tooltip {
     display: block !important;
     z-index: 100000;
-  
+
     .tooltip-inner {
         background: black;
         color: white;
         border-radius: 16px;
         padding: 5px 10px 4px;
     }
-  
+
     .tooltip-arrow {
         width: 0;
         height: 0;
@@ -17,10 +17,10 @@
         margin: 5px;
         border-color: black;
     }
-  
+
     &[x-placement^="top"] {
         margin-bottom: 5px;
-  
+
         .tooltip-arrow {
             border-width: 5px 5px 0 5px;
             border-left-color: transparent !important;
@@ -32,10 +32,10 @@
             margin-bottom: 0;
         }
     }
-  
+
     &[x-placement^="bottom"] {
         margin-top: 5px;
-  
+
         .tooltip-arrow {
             border-width: 0 5px 5px 5px;
             border-left-color: transparent !important;
@@ -47,10 +47,10 @@
             margin-bottom: 0;
         }
     }
-  
+
     &[x-placement^="right"] {
         margin-left: 5px;
-    
+
         .tooltip-arrow {
             border-width: 5px 5px 5px 0;
             border-left-color: transparent !important;
@@ -62,55 +62,140 @@
             margin-right: 0;
         }
     }
-  
+
     &[x-placement^="left"] {
-      margin-right: 5px;
-  
-      .tooltip-arrow {
-        border-width: 5px 0 5px 5px;
-        border-top-color: transparent !important;
-        border-right-color: transparent !important;
-        border-bottom-color: transparent !important;
-        right: -5px;
-        top: calc(50% - 5px);
-        margin-left: 0;
-        margin-right: 0;
-      }
+        margin-right: 5px;
+
+        .tooltip-arrow {
+            border-width: 5px 0 5px 5px;
+            border-top-color: transparent !important;
+            border-right-color: transparent !important;
+            border-bottom-color: transparent !important;
+            right: -5px;
+            top: calc(50% - 5px);
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
-  
+
     &[aria-hidden='true'] {
         visibility: hidden;
         opacity: 0;
         transition: opacity .15s, visibility .15s;
     }
-  
+
     &[aria-hidden='false'] {
         visibility: visible;
         opacity: 1;
         transition: opacity .15s;
     }
-  }
-  
-    .alert.open.alert-with-icon {
-        min-height: 75px;
-    }
-    
-    span[data-notify="message"] {
-        margin-top: 15px;
-    }
-  
-    .form-group.required .control-label:after {
-        content: " *";
-        color: #ff2603;
-    }
-  
-    i.el-collapse-item__arrow.el-icon-arrow-right {
-        margin-top: 16px;
+}
+
+.alert.open.alert-with-icon {
+    min-height: 75px;
+}
+
+span[data-notify="message"] {
+    margin-top: 15px;
+}
+
+.form-group.required .control-label:after {
+    content: " *";
+    color: #ff2603;
+}
+
+i.el-collapse-item__arrow.el-icon-arrow-right {
+    margin-top: 16px;
+}
+
+.footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.full-page {
+
+    &:after,
+    &:before {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 2;
     }
 
-    .footer {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
+    &:after {
+        background: $color-black;
+        z-index: 3;
+        opacity: 1;
     }
+
+    > .content,
+    > .footer {
+        position: relative;
+        z-index: 4;
+    }
+
+    > .content {
+        min-height: calc(100vh - 70px);
+    }
+
+    .full-page-background {
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: center center;
+
+    }
+
+    &[data-image]:after,
+    &.has-image:after {
+        opacity: .7;
+    }
+
+    &[data-color="blue"]:after {
+        background-color: rgba($filter-blue, 0.7);
+    }
+
+    &[data-color="azure"]:after {
+        background-color: rgba($filter-azure, 0.7);
+    }
+
+    &[data-color="green"]:after {
+        background-color: rgba($filter-green, 0.7);
+    }
+
+    &[data-color="orange"]:after {
+        background-color: rgba($filter-orange, 0.7);
+    }
+
+    &[data-color="red"]:after {
+        background-color: rgba($filter-red, 0.7);
+    }
+
+    .footer nav > ul a:not(.btn),
+    .footer .copyright,
+    .footer .copyright a {
+        color: $white-color;
+        font-size: $font-size-base;
+    }
+
+}
+
+.login-page,
+.lock-page {
+    > .content {
+        padding-top: 20vh;
+    }
+}
+
