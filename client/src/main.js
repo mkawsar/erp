@@ -6,6 +6,7 @@ import router from "./router/index";
 
 import apisService from "./services/apis";
 import authService from './services/auth';
+import notificationService from "./services/notification";
 import localStorageService from "./services/localStorage";
 
 import {store} from './store';
@@ -18,6 +19,7 @@ Vue.prototype.$moment = moment;
 
 Vue.prototype.$api = apisService;
 Vue.prototype.$auth = authService;
+Vue.prototype.$notification = notificationService;
 Vue.prototype.$localStorage = localStorageService;
 
 Vue.use(PaperDashboard);
