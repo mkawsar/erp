@@ -1,7 +1,11 @@
 //ROLE ENUMS
 export enum RoleType {
     USER = 'user',
-    ADMIN = 'admin'
+    ADMIN = 'admin',
+    CLIENT = 'client',
+    SUPPLIER = 'supplier',
+    EMPLOYEE = 'employee',
+    CONTRACTORS = 'contractors'
 }
 
 //USER ACCOUNT STATUS ENUMS
