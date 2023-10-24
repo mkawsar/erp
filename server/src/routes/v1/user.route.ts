@@ -1,8 +1,10 @@
 import { Router } from 'express';
+import { RoleType } from '../../utils/enums';
 import { userController } from '../../controllers';
 import auth from '../../middlewares/auth.middleware';
 import { password } from '../../validators/user.validator';
 import validate from '../../middlewares/validation.middleware';
+import permission from '../../middlewares/permission.middleware';
 import { requiredTextField } from '../../validators/common.validator';
 import { emailAddressValidation, authorization } from '../../validators/auth.validator';
 
@@ -38,7 +40,7 @@ _router
 // Get all user
 _router
     .route('/list')
-    .get(validate([authorization()]), auth, userController.getAllUser);
+    .get(validate([authorization()]), auth, permission([RoleType.ADMIN, RoleType.USER]), userController.getAllUser);
 
 // Get user details
 _router
