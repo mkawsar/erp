@@ -1,5 +1,5 @@
 .idea/
-.DS-Store
+.DS_Store
 .vs_code
 client/package-lock.json
 client/node_modules
