@@ -11,8 +11,15 @@
     },
     "devDependencies": {
         "@nuxt/devtools": "latest",
+        "@nuxtjs/axios": "^5.13.6",
+        "@nuxtjs/dotenv": "^1.4.1",
+        "@nuxtjs/moment": "^1.6.1",
+        "@nuxtjs/proxy": "^2.1.0",
+        "@nuxtjs/style-resources": "^2.0.0",
         "@nuxtjs/tailwindcss": "^6.8.0",
+        "@pinia/nuxt": "^0.5.1",
         "nuxt": "^3.8.0",
+        "pinia": "^2.1.7",
         "vue": "^3.3.6",
         "vue-router": "^4.2.5"
     },

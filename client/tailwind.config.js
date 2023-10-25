@@ -2,9 +2,10 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
     content: [
-        // `${srcDir}/components/**/*.{vue,js,ts}`,
-        // `${srcDir}/layouts/**/*.vue`,
-        // `${srcDir}/pages/**/*.vue`,
+        `@/components/**/*.{vue,js,ts}`,
+        `@/layouts/*.vue`,
+        `@/pages/*.vue`,
+        `@/pages/**/*.vue`,
         // `${srcDir}/composables/**/*.{js,ts}`,
         // `${srcDir}/plugins/**/*.{js,ts}`,
         // `${srcDir}/utils/**/*.{js,ts}`,
