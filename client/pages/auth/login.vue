@@ -48,7 +48,7 @@
                         type="password"/>
                 </div>
                 <div class="mt-8">
-                    <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login
+                    <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600" @click.prevent="handleSubmitLogin">Login
                     </button>
                 </div>
                 <div class="mt-4 flex items-center justify-between">
@@ -61,9 +61,12 @@
     </div>
 </template>
 
-<script>
-export default {
-    layout: 'custom',
-    name: 'Login',
-}
+<script lang="ts">
+    export default {
+        name: 'login',
+        methods: {
+            handleSubmitLogin() {
+            }
+        }
+    }
 </script>
