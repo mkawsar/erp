@@ -1,27 +1,12 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
     content: [
-        `@/components/**/*.{vue,js,ts}`,
+        "./pages/*.vue",
+        "./pages/**/*.vue",
         `@/layouts/*.vue`,
-        `@/pages/*.vue`,
-        `@/pages/**/*.vue`,
-        // `${srcDir}/composables/**/*.{js,ts}`,
-        // `${srcDir}/plugins/**/*.{js,ts}`,
-        // `${srcDir}/utils/**/*.{js,ts}`,
-        // `${srcDir}/App.{js,ts,vue}`,
-        // `${srcDir}/app.{js,ts,vue}`,
-        // `${srcDir}/Error.{js,ts,vue}`,
-        // `${srcDir}/error.{js,ts,vue}`,
-        // `${srcDir}/app.config.{js,ts}`,
-        "./app.vue"
     ],
     theme: {
-        extend: {
-            colors: {
-                primary: defaultTheme.colors.green
-            }
-        },
+        extend: {},
     },
     plugins: [],
 }
