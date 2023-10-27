@@ -32,5 +32,8 @@ export default {
     build: {},
     tailwindcss: {
         cssPath: '~/assets/css/main.css',
-    }
+    },
+    router: {
+        middleware: ['auth', 'authentication'],
+    },
 }

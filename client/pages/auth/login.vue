@@ -61,8 +61,9 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
     export default {
+        layout:  'default',
         name: 'login',
         methods: {
             handleSubmitLogin() {
