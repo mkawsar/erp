@@ -21,12 +21,16 @@ export default {
     css: [],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [],
+    plugins: [
+        '~/plugins/notification'
+    ],
     components: true,
     buildModules: ['@nuxtjs/tailwindcss'],
 
     // Modules: https://go.nuxtjs.dev/config-modules
-    modules: [],
+    modules: [
+        'nuxt-material-design-icons'
+    ],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
@@ -35,5 +39,5 @@ export default {
     },
     router: {
         middleware: ['auth', 'authentication'],
-    },
+    }
 }

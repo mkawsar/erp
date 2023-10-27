@@ -67,6 +67,7 @@
         name: 'login',
         methods: {
             handleSubmitLogin() {
+                this.$toasted.global.e({message: 'Not Authorized to Access'})
             }
         }
     }
