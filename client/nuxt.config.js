@@ -22,6 +22,7 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
+        '~/plugins/axios',
         '~/plugins/notification'
     ],
     components: true,
@@ -29,6 +30,8 @@ export default {
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
+        '@nuxtjs/axios',
+        '@nuxtjs/proxy',
         'nuxt-material-design-icons'
     ],
 
@@ -39,5 +42,11 @@ export default {
     },
     router: {
         middleware: ['auth', 'authentication'],
+    },
+    axios: {
+        baseURL: 'http://127.0.0.1:4000',
+    },
+    proxy: {
+        '/api': 'http://127.0.0.1:4000'
     }
 }

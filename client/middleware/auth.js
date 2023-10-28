@@ -7,5 +7,6 @@ export default({store}) => {
     if (token) {
         store.commit('auth/setToken', token)
         store.commit('auth/setLogged', true)
+        store.$axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
 };
