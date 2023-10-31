@@ -110,7 +110,13 @@ export default {
     },
     methods: {
         handleSubmitLogin() {
-            this.$toasted.global.e({message: 'Not Authorized to Access'})
+            this.$token.get('test');
+            // this.$validator.validateAll().then(isValid => {
+            //     if (isValid) {
+            //         console.log('test');
+            //     }
+            // });
+            // this.$toasted.global.e({message: 'Not Authorized to Access'})
         }
     }
 }
