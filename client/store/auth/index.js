@@ -30,4 +30,11 @@ export const mutations = {
     setError(state, value) {
         state.isError = value
     }
+};
+
+export const actions = {
+    handleGetToken({commit}) {
+        const token = this.$token.get('token');
+        console.log(token);
+    }
 }

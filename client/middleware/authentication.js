@@ -6,10 +6,10 @@ export default ({store, redirect, route}) => {
         '/auth/login/',
     ];
 
-    if (isLogged && beforeLogin.includes(route.path)){
-        redirect('/')
-    } else if(!isLogged && !beforeLogin.includes(route.path)){
-        redirect('/auth/login')
+    if (isLogged && beforeLogin.includes(route.path)) {
+        redirect('/');
+    } else if(!isLogged && !beforeLogin.includes(route.path)) {
+        redirect('/auth/login');
     }
 
     return;

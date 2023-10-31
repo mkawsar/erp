@@ -110,7 +110,7 @@ export default {
     },
     methods: {
         handleSubmitLogin() {
-            this.$token.get('test');
+            this.$token.get('token');
             // this.$validator.validateAll().then(isValid => {
             //     if (isValid) {
             //         console.log('test');
