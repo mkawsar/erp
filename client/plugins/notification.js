@@ -40,4 +40,3 @@ Vue.toasted.register('s',
     },
     options
 );
-
