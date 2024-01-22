@@ -11,7 +11,7 @@ const getAllCategory = async (req: Request, res: Response, next: NextFunction) =
         };
         const count = await Category.countDocuments();
         let categories = await Category.find({})
-            .populate('role')
+            .populate('createdBy', ['firstName', 'lastName'])
             .limit(pageOptions.limit * 1)
             .skip((pageOptions.page - 1) * pageOptions.limit)
             .sort({ createAt: -1 });
@@ -28,4 +28,20 @@ const getAllCategory = async (req: Request, res: Response, next: NextFunction) =
     }
 };
 
-export default {getAllCategory};
+const createCategory = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { name, parentId } = req.body;
+        const createdBy = req['tokenPayload']?.id;
+        const category = new Category({
+            name,
+            parentId,
+            createdBy
+        });
+        await category.save();
+        return jsonOne<string>(res, 201, 'The category item save has been successfully');
+    } catch (error) {
+        next(error);
+    }
+};
+
+export default {getAllCategory, createCategory};

@@ -10,6 +10,7 @@ const CategorySchema: Schema = new Schema(
         name: {
             type: String,
             default: '',
+            unique: true,
         },
         parentId: {
             type: mongoose.Schema.Types.ObjectId,
