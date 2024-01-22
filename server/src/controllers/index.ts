@@ -2,5 +2,6 @@ import roleController from './role.controller';
 import userController from './user.controller';
 import authController from './auth.controller';
 import projectController from './project.controller';
+import categoryController from './category.controller';
 
-export {authController, projectController, roleController, userController};
+export {authController, categoryController, projectController, roleController, userController};
