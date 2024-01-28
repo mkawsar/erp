@@ -13,11 +13,13 @@ const generateOtp = function (len: number): string {
     return OTP;
 };
 
-const verifyOtp = async function(userId: any, otp: string, type: string): Promise<any> {
-    let existOtp = await OTP.findOne({userId, otp, type});
-    
+const verifyOtp = async function (userId: any, otp: string, type: string): Promise<any> {
+    let existOtp = await OTP.findOne({ userId, otp, type });
+
+    let date = new Date(existOtp.otpExpiration);
+
     const currentDate = new Date();
-    if (!existOtp || existOtp.otpExpiration > currentDate) {
+    if (!existOtp && date > currentDate) {
         return null;
     }
 
@@ -31,7 +33,7 @@ const generateJWT = function (payload: object = {}, options: object = {}): strin
     const privateKey: any = process.env.JWT_SECRETS;
     const defaultOptions: object = {
         expiresIn: '23h',
-    }; 
+    };
     return jwt.sign(
         payload,
         privateKey,

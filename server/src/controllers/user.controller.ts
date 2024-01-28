@@ -1,10 +1,10 @@
 import { hash } from 'bcrypt';
 import OTP from '../models/opt';
 import Role from '../models/role';
-import {IUser} from '../interfaces';
+import { IUser } from '../interfaces';
 import HttpError from '../utils/httpError';
-import User, {IUserModel} from '../models/user';
-import {jsonOne, jsonAll} from '../utils/general';
+import User, { IUserModel } from '../models/user';
+import { jsonOne, jsonAll } from '../utils/general';
 import { generateOtp, verifyOtp } from '../utils';
 import { RoleType, OtpType } from '../utils/enums';
 import MailService from '../services/mail.service';
@@ -17,7 +17,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
         const { firstName, lastName, avatar, email, password } = req.body;
 
         //FIND EXIST USES
-        const userExist = await User.exists({email});
+        const userExist = await User.exists({ email });
         if (userExist) {
             throw new HttpError({
                 title: 'email_address',
@@ -27,7 +27,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
         }
 
         //GET ROLE
-        const role = await Role.findOne({name: RoleType.USER});
+        const role = await Role.findOne({ name: RoleType.USER });
 
         if (!role) {
             throw new HttpError({
@@ -53,7 +53,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 
         // GENERATE OTP FOR MAIL VERIFICATION
         let tokenExpiration: any = new Date();
-        tokenExpiration = tokenExpiration.setMinutes(tokenExpiration.getMinutes() + 10);
+        tokenExpiration = tokenExpiration.setMinutes(tokenExpiration.getMinutes() + 59);
         const otp: string = generateOtp(6);
 
         let newOTP = new OTP({
@@ -81,9 +81,9 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-const accountVerify = async(req: Request, res: Response, next: NextFunction) => {
+const accountVerify = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const {email, otp} = req.body;
+        const { email, otp } = req.body;
 
         //FINDIND USER
         let user = await User.findOne({ email });
@@ -101,6 +101,8 @@ const accountVerify = async(req: Request, res: Response, next: NextFunction) => 
 
         //VERIFYING OTP
         let isOtpValid = await verifyOtp(user._id, otp, OtpType.VERIFICATION);
+        console.log(isOtpValid);
+
 
         if (!isOtpValid) {
             throw new HttpError({
@@ -137,7 +139,7 @@ const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
             .limit(pageOptions.limit * 1)
             .skip((pageOptions.page - 1) * pageOptions.limit)
             .sort({ createAt: -1 });
-        
+
         let meta = {
             total: count,
             limit: pageOptions.limit,
@@ -196,4 +198,4 @@ const updateUserInfo = async (req: Request, res: Response, next: NextFunction) =
     }
 }
 
-export default {accountVerify, createUser, getAllUser, getUserDetails, updateUserInfo};
+export default { accountVerify, createUser, getAllUser, getUserDetails, updateUserInfo };
