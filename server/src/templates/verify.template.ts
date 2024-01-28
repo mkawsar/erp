@@ -132,7 +132,7 @@ const verifyEmail = function (otp: string) {
                             <a href="mailto:kawsar.diu888@gmail.com" class="hover-underline"
                               style="--text-opacity: 1; color: #7367f0;  text-decoration: none;">kawsar.diu888@gmail.com</a>.
                           </p>
-                          <p style="margin: 0 0 16px;">Thanks, <br>The node-typescript-boilerplate Support Team</p>
+                          <p style="margin: 0 0 16px;">Thanks, <br>The ERP Support Team</p>
                         </td>
                       </tr>
                       <tr>
