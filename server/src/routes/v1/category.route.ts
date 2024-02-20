@@ -29,5 +29,10 @@ _router
         categoryController.createCategory
     );
 
+// Destroy category
+_router
+    .route('/:id/delete')
+    .delete(validate([authorization()]), auth, categoryController.destroy);
+
 //EXPORT
 export const router = _router;

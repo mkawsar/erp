@@ -44,4 +44,14 @@ const createCategory = async (req: Request, res: Response, next: NextFunction) =
     }
 };
 
-export default {getAllCategory, createCategory};
+const destroy = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        let id = req.params?.id;
+        await Category.findByIdAndDelete(id);
+        return jsonOne<string>(res, 201, 'The category item delete has been successfully');
+    } catch (error) {
+        next(error);
+    }
+}
+
+export default {getAllCategory, createCategory, destroy};
