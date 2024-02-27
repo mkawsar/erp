@@ -1,5 +1,7 @@
 .idea/
 .DS_Store
 .vs_code
-client/package-lock.json
-client/node_modules
+node_modules/
+yarn.lock
+.env
+package-lock.json

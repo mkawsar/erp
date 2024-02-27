@@ -81,7 +81,7 @@ const StartServer =async () => {
     //API ERROR HANDLING
     router.use((req, res, next) => {
         const error = new Error('not found');
-        Logging.error(error);
+        // Logging.error(error);
         return res.status(404).json({ success: false, message: error.message });
     });
 
